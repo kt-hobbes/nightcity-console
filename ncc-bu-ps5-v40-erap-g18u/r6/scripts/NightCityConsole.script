@@ -1,0 +1,1154 @@
+public class NCCItem extends IScriptable { public let id: String; public let label: String; public let category: String; public let quantity: Int32; }
+public class NCCAction extends IScriptable { public let label: String; public let category: String; public let command: String; public let values: array<Int32>; }
+public class NCCCatalog extends IScriptable {
+  public static function Items() -> array<NCCItem> {
+    let entries: array<NCCItem>;
+    let e: NCCItem;
+    e = new NCCItem;
+    e.id = "Items.CommonMaterial1"; e.label = "Tier 1 Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.UncommonMaterial1"; e.label = "Tier 2 Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.RareMaterial1"; e.label = "Tier 3 Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.EpicMaterial1"; e.label = "Tier 4 Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.LegendaryMaterial1"; e.label = "Tier 5 Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.QuickHackUncommonMaterial1"; e.label = "Tier 2 Quickhack Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.QuickHackRareMaterial1"; e.label = "Tier 3 Quickhack Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.QuickHackEpicMaterial1"; e.label = "Tier 4 Quickhack Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.QuickHackLegendaryMaterial1"; e.label = "Tier 5 Quickhack Components"; e.category = "Components"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Ammo.HandgunAmmo"; e.label = "Handgun Ammo"; e.category = "Ammo"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Ammo.RifleAmmo"; e.label = "Rifle Ammo"; e.category = "Ammo"; e.quantity = 100; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Ammo.ShotgunAmmo"; e.label = "Shotgun Ammo"; e.category = "Ammo"; e.quantity = 50; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Ammo.SniperRifleAmmo"; e.label = "Sniper Rifle Ammo"; e.category = "Ammo"; e.quantity = 50; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Katana_Default"; e.label = "Katana"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Katana_Saburo"; e.label = "Satori"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Katana_Wakako"; e.label = "Byakko"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Liberty_Dex"; e.label = "Plan B"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Silverhand_3516"; e.label = "Malorian Arms 3516"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Overture_Default"; e.label = "Overture"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Carnage_Default"; e.label = "Carnage"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Grad_Default"; e.label = "Grad"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Ajax_Default"; e.label = "Ajax"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.Preset_Nue_Default"; e.label = "Nue"; e.category = "Weapons"; e.quantity = 1; entries.PushBack(e);
+    e = new NCCItem;
+    e.id = "Items.SQ031_Samurai_Jacket"; e.label = "Replica of Johnny's Samurai Jacket"; e.category = "Clothing"; e.quantity = 1; entries.PushBack(e);
+    return entries;
+  }
+  public static function Actions() -> array<NCCAction> {
+    let entries: array<NCCAction>;
+    let remaining: array<NCCAction>;
+    let i: Int32;
+    entries = NCCCatalog.ActionsFirst();
+    remaining = NCCCatalog.ActionsSecond();
+    i = 0;
+    while (i < remaining.Size()) {
+      entries.PushBack(remaining[i]);
+      i += 1;
+    }
+    return entries;
+  }
+  public static function ActionsFirst() -> array<NCCAction> {
+    let entries: array<NCCAction>;
+    let e: NCCAction;
+    e = new NCCAction;
+    e.label = "Add Eurodollars"; e.category = "Money"; e.command = "money add ";
+    e.values.PushBack(1000);
+    e.values.PushBack(10000);
+    e.values.PushBack(50000);
+    e.values.PushBack(100000);
+    e.values.PushBack(1000000);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Set Total Balance"; e.category = "Money"; e.command = "money set ";
+    e.values.PushBack(0);
+    e.values.PushBack(1000);
+    e.values.PushBack(10000);
+    e.values.PushBack(50000);
+    e.values.PushBack(100000);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Restore Health"; e.category = "Resources"; e.command = "heal";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Refill Ammo"; e.category = "Resources"; e.command = "ammo refill";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Restore RAM"; e.category = "Resources"; e.command = "ram refill";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Restore Stamina"; e.category = "Resources"; e.command = "stamina refill";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Enable Invulnerability"; e.category = "Resources"; e.command = "god on";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Disable Invulnerability"; e.category = "Resources"; e.command = "god off";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Gain Levels"; e.category = "Progression"; e.command = "level set ";
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(30);
+    e.values.PushBack(40);
+    e.values.PushBack(50);
+    e.values.PushBack(60);
+    e.values.PushBack(70);
+    e.values.PushBack(80);
+    e.values.PushBack(90);
+    e.values.PushBack(100);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Add XP"; e.category = "Progression"; e.command = "xp add ";
+    e.values.PushBack(1000);
+    e.values.PushBack(5000);
+    e.values.PushBack(10000);
+    e.values.PushBack(50000);
+    e.values.PushBack(100000);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Level XP Multiplier"; e.category = "Progression"; e.command = "xp multiplier ";
+    e.values.PushBack(1);
+    e.values.PushBack(2);
+    e.values.PushBack(3);
+    e.values.PushBack(4);
+    e.values.PushBack(5);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Street Cred"; e.category = "Progression"; e.command = "streetcred set ";
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(30);
+    e.values.PushBack(40);
+    e.values.PushBack(50);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Attribute Points"; e.category = "Progression"; e.command = "points add attribute ";
+    e.values.PushBack(1);
+    e.values.PushBack(5);
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(50);
+    e.values.PushBack(100);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Perk Points"; e.category = "Progression"; e.command = "points add perk ";
+    e.values.PushBack(1);
+    e.values.PushBack(5);
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(50);
+    e.values.PushBack(100);
+    entries.PushBack(e);
+    return entries;
+  }
+  public static function ActionsSecond() -> array<NCCAction> {
+    let entries: array<NCCAction>;
+    let e: NCCAction;
+    e = new NCCAction;
+    e.label = "Level Cap (Experimental)"; e.category = "Level Cap"; e.command = "level cap ";
+    e.values.PushBack(60);
+    e.values.PushBack(70);
+    e.values.PushBack(80);
+    e.values.PushBack(90);
+    e.values.PushBack(100);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Reset Level Cap"; e.category = "Level Cap"; e.command = "level cap default";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "View Settings"; e.category = "Settings"; e.command = "status";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Reset Console Settings"; e.category = "Settings"; e.command = "settings reset";
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Body"; e.category = "Attributes"; e.command = "attribute set body ";
+    e.values.PushBack(3);
+    e.values.PushBack(5);
+    e.values.PushBack(9);
+    e.values.PushBack(15);
+    e.values.PushBack(20);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Reflexes"; e.category = "Attributes"; e.command = "attribute set reflexes ";
+    e.values.PushBack(3);
+    e.values.PushBack(5);
+    e.values.PushBack(9);
+    e.values.PushBack(15);
+    e.values.PushBack(20);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Technical Ability"; e.category = "Attributes"; e.command = "attribute set technical ";
+    e.values.PushBack(3);
+    e.values.PushBack(5);
+    e.values.PushBack(9);
+    e.values.PushBack(15);
+    e.values.PushBack(20);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Intelligence"; e.category = "Attributes"; e.command = "attribute set intelligence ";
+    e.values.PushBack(3);
+    e.values.PushBack(5);
+    e.values.PushBack(9);
+    e.values.PushBack(15);
+    e.values.PushBack(20);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Cool"; e.category = "Attributes"; e.command = "attribute set cool ";
+    e.values.PushBack(3);
+    e.values.PushBack(5);
+    e.values.PushBack(9);
+    e.values.PushBack(15);
+    e.values.PushBack(20);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Solo"; e.category = "Skills"; e.command = "skill set solo ";
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(30);
+    e.values.PushBack(40);
+    e.values.PushBack(50);
+    e.values.PushBack(60);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Shinobi"; e.category = "Skills"; e.command = "skill set shinobi ";
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(30);
+    e.values.PushBack(40);
+    e.values.PushBack(50);
+    e.values.PushBack(60);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Engineer"; e.category = "Skills"; e.command = "skill set engineer ";
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(30);
+    e.values.PushBack(40);
+    e.values.PushBack(50);
+    e.values.PushBack(60);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Netrunner"; e.category = "Skills"; e.command = "skill set netrunner ";
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(30);
+    e.values.PushBack(40);
+    e.values.PushBack(50);
+    e.values.PushBack(60);
+    entries.PushBack(e);
+    e = new NCCAction;
+    e.label = "Headhunter"; e.category = "Skills"; e.command = "skill set headhunter ";
+    e.values.PushBack(10);
+    e.values.PushBack(20);
+    e.values.PushBack(30);
+    e.values.PushBack(40);
+    e.values.PushBack(50);
+    e.values.PushBack(60);
+    entries.PushBack(e);
+    return entries;
+  }
+}
+
+// Catalogue browser: item and money additions require explicit confirmation.
+// Save-scoped opt-in. No change without the console's dedicated fact.
+public class NCCCapSettings extends IScriptable {
+  public static function Allowed(owner: GameObject) -> Bool {
+    let player: PlayerPuppet;
+    player = owner as PlayerPuppet;
+    if (player) {
+      return player.IsPlayerControlled() && !player.IsReplacer();
+    }
+    return false;
+  }
+
+  public static function NativeCap() -> Int32 {
+    let proficiencyRecord: Proficiency_Record;
+    proficiencyRecord = RPGManager.GetProficiencyRecord(gamedataProficiencyType.Level);
+    if (proficiencyRecord) { return proficiencyRecord.MaxLevel(); }
+    return 0;
+  }
+
+  public static function Configured(owner: GameObject) -> Int32 {
+    let quests: QuestsSystem;
+    let cap: Int32;
+    if (owner) {
+      if (NCCCapSettings.Allowed(owner)) {
+        quests = GameInstance.GetQuestsSystem(owner.GetGame());
+        if (quests) {
+          cap = quests.GetFact(n"ncc_console_level_cap_v2");
+          if (cap == 80 || cap == 100) { return cap; }
+        }
+      }
+    }
+    return 0;
+  }
+}
+
+
+@addField(PauseMenuGameController)
+let nccBrowserMode: Int32;
+@addField(PauseMenuGameController)
+let nccBrowserOffset: Int32;
+@addField(PauseMenuGameController)
+let nccBrowserCount: Int32;
+@addField(PauseMenuGameController)
+let nccBrowserSelected: Int32;
+@addField(PauseMenuGameController)
+let nccBrowserDetail: Bool;
+
+// First inventory features. State is transient and cleared with the pause menu.
+@addField(PauseMenuGameController)
+let nccInventoryStage: Int32;
+@addField(PauseMenuGameController)
+let nccInventoryId: String;
+@addField(PauseMenuGameController)
+let nccInventoryLabel: String;
+@addField(PauseMenuGameController)
+let nccInventoryAmount: Int32;
+@addField(PauseMenuGameController)
+let nccInventoryCaption: String;
+@addField(PauseMenuGameController)
+let nccInventoryNotice: String;
+
+
+// XP only. Native object access stays local, as in the compiled BB probe.
+@addField(PauseMenuGameController)
+let nccXPQueued: Bool;
+
+
+// Upward level changes only, using the game's current cap and reward path.
+@addField(PauseMenuGameController)
+let nccLevelQueued: Bool;
+
+
+@addField(PauseMenuGameController)
+let nccCapQueued: Bool;
+
+
+@wrapMethod(PauseMenuGameController)
+function PopulateMenuItemList() -> Void {
+  PopulateMenuItemList();
+  this.NCCInventoryReset();
+  this.nccBrowserMode = 0;
+  this.nccBrowserOffset = 0;
+  this.nccBrowserDetail = false;
+  this.AddMenuItem("Night City Console", n"NCCBrowserOpen");
+  this.m_menuListController.Refresh();
+}
+
+@wrapMethod(PauseMenuGameController)
+event OnMenuItemActivated(index: Int32, target: ListItemController) -> Void {
+  let data: PauseMenuListItemData;
+  if (target) {
+    data = target.GetData() as PauseMenuListItemData;
+    if (data) {
+      if (this.NCCBrowserHandle(data.eventName, index)) {
+        return;
+      }
+    }
+  }
+  OnMenuItemActivated(index, target);
+}
+
+@wrapMethod(PauseMenuGameController)
+event OnUninitialize() -> Void {
+  this.NCCInventoryReset();
+  this.nccBrowserMode = 0;
+  this.nccBrowserOffset = 0;
+  this.nccBrowserCount = 0;
+  this.nccBrowserDetail = false;
+  OnUninitialize();
+}
+
+@wrapMethod(PauseMenuGameController)
+event OnRedrawRequested() -> Void {
+  if (this.nccBrowserMode > 0) {
+    this.NCCBrowserRender();
+    return;
+  }
+  OnRedrawRequested();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserHandle(route: CName, index: Int32) -> Bool {
+  if (this.NCCInventoryHandle(route)) { return true; }
+  if (route == n"NCCBrowserOpen") {
+    this.nccBrowserMode = 1;
+    this.nccBrowserOffset = 0;
+    this.nccBrowserDetail = false;
+    this.NCCBrowserRender();
+    return true;
+  }
+  if (this.nccBrowserMode == 0) {
+    return false;
+  }
+  if (route == n"NCCBrowserClose") {
+    this.nccBrowserMode = 0;
+    this.nccBrowserDetail = false;
+    this.ShowActionsList();
+    this.NCCBrowserSelect(0, true);
+    return true;
+  }
+  if (route == n"NCCBrowserNone") {
+    return true;
+  }
+  if (route == n"NCCBrowserEntry") {
+    if (!this.nccBrowserDetail && index >= 1 && index <= 4) {
+      this.nccBrowserSelected = this.nccBrowserOffset + index - 1;
+      if (this.nccBrowserSelected < this.nccBrowserCount) {
+        this.nccBrowserDetail = true;
+        this.NCCBrowserRender();
+      }
+    }
+    return true;
+  }
+  return this.NCCBrowserNavigate(route);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserNavigate(route: CName) -> Bool {
+  if (route == n"NCCBrowserList") {
+    this.nccBrowserDetail = false;
+  } else {
+    if (route == n"NCCBrowserSwitch") {
+      if (this.nccBrowserMode == 1) {
+        this.nccBrowserMode = 2;
+      } else {
+        this.nccBrowserMode = 1;
+      }
+      this.nccBrowserOffset = 0;
+      this.nccBrowserDetail = false;
+    } else {
+      if (route == n"NCCBrowserNext") {
+        if (this.nccBrowserOffset + 4 < this.nccBrowserCount) {
+          this.nccBrowserOffset += 4;
+        }
+      } else {
+        if (route == n"NCCBrowserPrevious") {
+          if (this.nccBrowserOffset >= 4) {
+            this.nccBrowserOffset -= 4;
+          }
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+  this.NCCBrowserRender();
+  if (route == n"NCCBrowserList" && this.nccBrowserSelected >= this.nccBrowserOffset && this.nccBrowserSelected < this.nccBrowserOffset + 4 && this.nccBrowserSelected < this.nccBrowserCount) {
+    this.NCCBrowserSelect(this.nccBrowserSelected - this.nccBrowserOffset + 1, true);
+  }
+  return true;
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserRender() -> Void {
+  if (!this.m_menuListController || this.nccBrowserMode == 0) {
+    return;
+  }
+  if (this.nccInventoryStage > 0) {
+    this.NCCInventoryRender();
+    return;
+  }
+  if (this.nccBrowserMode == 1) {
+    this.NCCBrowserRenderActions();
+    return;
+  }
+  this.NCCBrowserRenderItems();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserFooter(total: Int32) -> Void {
+  if (this.nccBrowserOffset > 0) {
+    this.AddMenuItem("Previous Page", n"NCCBrowserPrevious");
+  }
+  if (this.nccBrowserOffset + 4 < total) {
+    this.AddMenuItem("Next Page", n"NCCBrowserNext");
+  }
+  this.AddMenuItem("Back to Pause Menu", n"NCCBrowserClose");
+  this.m_menuListController.Refresh();
+  if (total > 0) {
+    this.NCCBrowserSelect(1, true);
+  } else {
+    this.NCCBrowserSelect(0, true);
+  }
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserShowDetail(label: String, category: String) -> Void {
+  if (this.nccBrowserMode == 2) {
+    this.NCCInventoryItemMenu(label, category);
+    return;
+  }
+  if (this.nccBrowserMode == 1) {
+    this.NCCInventoryActionDetail(label, category);
+    return;
+  }
+  this.NCCBrowserPreviewDetail(label, category);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserBegin(total: Int32, heading: String) -> Void {
+  if (this.nccBrowserOffset < 0 || this.nccBrowserOffset >= total) {
+    this.nccBrowserOffset = 0;
+  }
+  this.Clear();
+  this.AddMenuItem(heading, n"NCCBrowserSwitch");
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserRenderActions() -> Void {
+  let entries: array<NCCAction>;
+  let entry: NCCAction;
+  let total: Int32;
+  let i: Int32;
+  let last: Int32;
+  entries = NCCCatalog.Actions();
+  total = entries.Size();
+  this.nccBrowserCount = total;
+  if (this.nccBrowserDetail) {
+    if (this.nccBrowserSelected >= 0 && this.nccBrowserSelected < total) {
+      entry = entries[this.nccBrowserSelected];
+      this.NCCBrowserShowDetail(entry.label, entry.category);
+      return;
+    }
+    this.nccBrowserDetail = false;
+  }
+  this.NCCBrowserBegin(total, "Actions | Browse Items");
+  i = this.nccBrowserOffset;
+  last = i + 4;
+  if (last > total) { last = total; }
+  while (i < last) {
+    entry = entries[i];
+    this.AddMenuItem(entry.label, n"NCCBrowserEntry");
+    i += 1;
+  }
+  this.NCCBrowserFooter(total);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserRenderItems() -> Void {
+  let entries: array<NCCItem>;
+  let entry: NCCItem;
+  let total: Int32;
+  let i: Int32;
+  let last: Int32;
+  entries = NCCCatalog.Items();
+  total = entries.Size();
+  this.nccBrowserCount = total;
+  if (this.nccBrowserDetail) {
+    if (this.nccBrowserSelected >= 0 && this.nccBrowserSelected < total) {
+      entry = entries[this.nccBrowserSelected];
+      this.NCCBrowserShowDetail(entry.label, entry.category);
+      return;
+    }
+    this.nccBrowserDetail = false;
+  }
+  this.NCCBrowserBegin(total, "Items | Browse Actions");
+  i = this.nccBrowserOffset;
+  last = i + 4;
+  if (last > total) { last = total; }
+  while (i < last) {
+    entry = entries[i];
+    this.AddMenuItem(entry.label, n"NCCBrowserEntry");
+    i += 1;
+  }
+  this.NCCBrowserFooter(total);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserPreviewDetail(label: String, category: String) -> Void {
+  this.Clear();
+  this.AddMenuItem(label, n"NCCBrowserNone");
+  this.AddMenuItem("Category: " + category, n"NCCBrowserNone");
+  this.AddMenuItem("Preview only. This action is unavailable.", n"NCCBrowserNone");
+  this.AddMenuItem("Back to Catalogue", n"NCCBrowserList");
+  this.AddMenuItem("Back to Pause Menu", n"NCCBrowserClose");
+  this.m_menuListController.Refresh();
+  this.NCCBrowserSelect(3, true);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryReset() -> Void {
+  this.nccCapQueued = false;
+  this.nccLevelQueued = false;
+  this.nccXPQueued = false;
+  this.nccInventoryStage = 0;
+  this.nccInventoryId = "";
+  this.nccInventoryLabel = "";
+  this.nccInventoryAmount = 0;
+  this.nccInventoryCaption = "";
+  this.nccInventoryNotice = "";
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryHandle(route: CName) -> Bool {
+  if (this.NCCCapHandle(route)) { return true; }
+  if (this.NCCLevelHandle(route)) { return true; }
+  if (this.NCCXPHandle(route)) { return true; }
+  if (route == n"NCCInventoryConfirm") {
+    this.NCCInventoryConfirm();
+    return true;
+  }
+  if (route == n"NCCInventoryCancel" || route == n"NCCInventoryReturn") {
+    if (this.nccInventoryStage > 0) {
+      this.NCCInventoryReset();
+      this.NCCBrowserRender();
+    }
+    return true;
+  }
+  if (route == n"NCCBrowserClose" || route == n"NCCBrowserList") {
+    this.NCCInventoryReset();
+    return false;
+  }
+  if (this.nccInventoryStage > 0) {
+    return true;
+  }
+  return this.NCCInventoryHandleQuantity(route);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryHandleQuantity(route: CName) -> Bool {
+  if (route == n"NCCItem1") { this.NCCInventoryRequest(1, "Quantity: 1"); return true; }
+  if (route == n"NCCItem5") { this.NCCInventoryRequest(5, "Quantity: 5"); return true; }
+  if (route == n"NCCItem10") { this.NCCInventoryRequest(10, "Quantity: 10"); return true; }
+  if (route == n"NCCItem100") { this.NCCInventoryRequest(100, "Quantity: 100"); return true; }
+  if (route == n"NCCMoney1000") { this.NCCInventoryRequest(1000, "Amount: 1,000 eurodollars"); return true; }
+  if (route == n"NCCMoney10000") { this.NCCInventoryRequest(10000, "Amount: 10,000 eurodollars"); return true; }
+  if (route == n"NCCMoney100000") { this.NCCInventoryRequest(100000, "Amount: 100,000 eurodollars"); return true; }
+  if (route == n"NCCMoney1000000") { this.NCCInventoryRequest(1000000, "Amount: 1,000,000 eurodollars"); return true; }
+  return false;
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryRequest(amount: Int32, caption: String) -> Void {
+  if (this.nccInventoryStage != 0 || !this.nccBrowserDetail) { return; }
+  if (this.nccBrowserMode == 2) {
+    this.NCCInventoryPrepareItem(amount, caption);
+    return;
+  }
+  if (this.nccBrowserMode == 1) {
+    this.NCCInventoryPrepareMoney(amount, caption);
+  }
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryPrepareItem(amount: Int32, caption: String) -> Void {
+  let entries: array<NCCItem>;
+  let entry: NCCItem;
+  if (amount != 1 && amount != 5 && amount != 10 && amount != 100) { return; }
+  entries = NCCCatalog.Items();
+  if (this.nccBrowserSelected < 0 || this.nccBrowserSelected >= entries.Size()) { return; }
+  entry = entries[this.nccBrowserSelected];
+  this.nccInventoryId = entry.id;
+  this.nccInventoryLabel = entry.label;
+  this.nccInventoryAmount = amount;
+  this.nccInventoryCaption = caption;
+  this.nccInventoryStage = 1;
+  this.NCCBrowserRender();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryPrepareMoney(amount: Int32, caption: String) -> Void {
+  let entries: array<NCCAction>;
+  let entry: NCCAction;
+  if (amount != 1000 && amount != 10000 && amount != 100000 && amount != 1000000) { return; }
+  entries = NCCCatalog.Actions();
+  if (this.nccBrowserSelected < 0 || this.nccBrowserSelected >= entries.Size()) { return; }
+  entry = entries[this.nccBrowserSelected];
+  if (entry.command != "money add ") { return; }
+  this.nccInventoryId = "Items.money";
+  this.nccInventoryLabel = "Eurodollars";
+  this.nccInventoryAmount = amount;
+  this.nccInventoryCaption = caption;
+  this.nccInventoryStage = 1;
+  this.NCCBrowserRender();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryItemMenu(label: String, category: String) -> Void {
+  this.Clear();
+  this.AddMenuItem(label, n"NCCBrowserNone");
+  this.AddMenuItem("Category: " + category, n"NCCBrowserNone");
+  this.AddMenuItem("Add 1", n"NCCItem1");
+  this.AddMenuItem("Add 5", n"NCCItem5");
+  this.AddMenuItem("Add 10", n"NCCItem10");
+  this.AddMenuItem("Add 100", n"NCCItem100");
+  this.NCCInventoryFinishMenu(2);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryMoneyMenu(label: String, category: String) -> Void {
+  this.Clear();
+  this.AddMenuItem(label, n"NCCBrowserNone");
+  this.AddMenuItem("Category: " + category, n"NCCBrowserNone");
+  this.AddMenuItem("Add 1,000 eurodollars", n"NCCMoney1000");
+  this.AddMenuItem("Add 10,000 eurodollars", n"NCCMoney10000");
+  this.AddMenuItem("Add 100,000 eurodollars", n"NCCMoney100000");
+  this.AddMenuItem("Add 1,000,000 eurodollars", n"NCCMoney1000000");
+  this.NCCInventoryFinishMenu(2);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryActionDetail(label: String, category: String) -> Void {
+  let entries: array<NCCAction>;
+  let entry: NCCAction;
+  entries = NCCCatalog.Actions();
+  if (this.nccBrowserSelected >= 0 && this.nccBrowserSelected < entries.Size()) {
+    entry = entries[this.nccBrowserSelected];
+    if (entry.command == "level cap ") {
+      this.NCCCapMenu(label, category);
+      return;
+    }
+    if (entry.command == "level set ") {
+      this.NCCLevelMenu(label, category);
+      return;
+    }
+    if (entry.command == "xp add ") {
+      this.NCCXPMenu(label, category);
+      return;
+    }
+    if (entry.command == "money add ") {
+      this.NCCInventoryMoneyMenu(label, category);
+      return;
+    }
+  }
+  this.NCCBrowserPreviewDetail(label, category);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryFinishMenu(selection: Int32) -> Void {
+  this.AddMenuItem("Back to Catalogue", n"NCCBrowserList");
+  this.AddMenuItem("Back to Pause Menu", n"NCCBrowserClose");
+  this.m_menuListController.Refresh();
+  this.NCCBrowserSelect(selection, true);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryRender() -> Void {
+  if (this.nccInventoryStage == 1) {
+    this.NCCInventoryReview();
+    return;
+  }
+  this.NCCInventoryResult();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryReview() -> Void {
+  this.Clear();
+  this.AddMenuItem(this.nccInventoryLabel, n"NCCBrowserNone");
+  this.AddMenuItem(this.nccInventoryCaption, n"NCCBrowserNone");
+  this.AddMenuItem("Confirm Change", n"NCCInventoryConfirm");
+  this.AddMenuItem("Cancel", n"NCCInventoryCancel");
+  this.AddMenuItem("Back to Catalogue", n"NCCBrowserList");
+  this.AddMenuItem("Back to Pause Menu", n"NCCBrowserClose");
+  this.m_menuListController.Refresh();
+  this.NCCBrowserSelect(3, true);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryResult() -> Void {
+  this.Clear();
+  this.AddMenuItem(this.nccInventoryNotice, n"NCCBrowserNone");
+  this.AddMenuItem(this.nccInventoryLabel, n"NCCBrowserNone");
+  this.AddMenuItem("Back to Options", n"NCCInventoryReturn");
+  this.AddMenuItem("Back to Catalogue", n"NCCBrowserList");
+  this.AddMenuItem("Back to Pause Menu", n"NCCBrowserClose");
+  this.m_menuListController.Refresh();
+  this.NCCBrowserSelect(2, true);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryConfirm() -> Void {
+  let accepted: Bool;
+  if (this.nccCapQueued) {
+    if (this.nccInventoryStage != 1) { return; }
+    this.nccInventoryStage = 2;
+    this.nccCapQueued = false;
+    this.NCCCapApply(this.nccInventoryAmount);
+    this.nccInventoryAmount = 0;
+    this.NCCBrowserRender();
+    return;
+  }
+  if (this.nccLevelQueued) {
+    if (this.nccInventoryStage != 1) { return; }
+    this.nccInventoryStage = 2;
+    this.nccLevelQueued = false;
+    this.NCCLevelApply(this.nccInventoryAmount);
+    this.nccInventoryAmount = 0;
+    this.NCCBrowserRender();
+    return;
+  }
+  if (this.nccXPQueued) {
+    if (this.nccInventoryStage != 1) { return; }
+    this.nccInventoryStage = 2;
+    this.nccXPQueued = false;
+    this.NCCXPApply(this.nccInventoryAmount);
+    this.nccInventoryAmount = 0;
+    this.NCCBrowserRender();
+    return;
+  }
+  if (this.nccInventoryStage != 1) { return; }
+  this.nccInventoryStage = 2;
+  accepted = this.NCCInventoryApply(this.nccInventoryId, this.nccInventoryAmount);
+  this.nccInventoryId = "";
+  this.nccInventoryAmount = 0;
+  if (accepted) {
+    this.nccInventoryNotice = "Grant accepted by the game.";
+  } else {
+    this.nccInventoryNotice = "Grant failed. Item, player, or inventory unavailable.";
+  }
+  this.NCCBrowserRender();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCInventoryApply(recordName: String, amount: Int32) -> Bool {
+  let owner: GameObject;
+  let transaction: TransactionSystem;
+  let id: TweakDBID;
+  let current: Int32;
+  if (amount <= 0 || amount > 1000000 || recordName == "") { return false; }
+  owner = this.GetPlayerControlledObject();
+  if (owner) {
+    id = TDBID.Create(recordName);
+    if (TweakDBInterface.GetItemRecord(id)) {
+      transaction = GameInstance.GetTransactionSystem(owner.GetGame());
+      if (transaction) {
+        current = transaction.GetItemQuantity(owner, ItemID.FromTDBID(id));
+        if (current < 0 || current > 2000000000 - amount) { return false; }
+        return transaction.GiveItemByTDBID(owner, id, amount);
+      }
+    }
+  }
+  return false;
+}
+
+@addMethod(PauseMenuGameController)
+function NCCBrowserSelect(selection: Int32, force: Bool) -> Void {
+  this.m_menuListController.SetSelectedIndex(selection, force);
+  this.SetCursorOverWidget(this.m_menuListController.GetItemAt(selection), 0.00, true);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCXPHandle(route: CName) -> Bool {
+  if (this.nccInventoryStage > 0) { return false; }
+  if (route == n"NCCXP1000") { this.NCCXPRequest(1000, "Add 1,000 XP"); return true; }
+  if (route == n"NCCXP5000") { this.NCCXPRequest(5000, "Add 5,000 XP"); return true; }
+  if (route == n"NCCXP10000") { this.NCCXPRequest(10000, "Add 10,000 XP"); return true; }
+  if (route == n"NCCXP50000") { this.NCCXPRequest(50000, "Add 50,000 XP"); return true; }
+  return false;
+}
+
+@addMethod(PauseMenuGameController)
+function NCCXPRequest(amount: Int32, caption: String) -> Void {
+  let entries: array<NCCAction>;
+  let entry: NCCAction;
+  if (this.nccInventoryStage != 0 || this.nccBrowserMode != 1 || !this.nccBrowserDetail) { return; }
+  if (amount != 1000 && amount != 5000 && amount != 10000 && amount != 50000) { return; }
+  entries = NCCCatalog.Actions();
+  if (this.nccBrowserSelected < 0 || this.nccBrowserSelected >= entries.Size()) { return; }
+  entry = entries[this.nccBrowserSelected];
+  if (entry.command != "xp add ") { return; }
+  this.nccXPQueued = true;
+  this.nccInventoryId = "";
+  this.nccInventoryLabel = entry.label;
+  this.nccInventoryAmount = amount;
+  this.nccInventoryCaption = caption;
+  this.nccInventoryStage = 1;
+  this.NCCBrowserRender();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCXPMenu(label: String, category: String) -> Void {
+  this.Clear();
+  this.AddMenuItem(label, n"NCCBrowserNone");
+  this.AddMenuItem("Category: " + category, n"NCCBrowserNone");
+  this.AddMenuItem("Add 1,000 XP", n"NCCXP1000");
+  this.AddMenuItem("Add 5,000 XP", n"NCCXP5000");
+  this.AddMenuItem("Add 10,000 XP", n"NCCXP10000");
+  this.AddMenuItem("Add 50,000 XP", n"NCCXP50000");
+  this.NCCInventoryFinishMenu(2);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCXPApply(amount: Int32) -> Void {
+  let owner: GameObject;
+  let development: PlayerDevelopmentData;
+  let current: Int32;
+  let cap: Int32;
+  let beforeXP: Int32;
+  let afterXP: Int32;
+  let afterLevel: Int32;
+  this.nccInventoryNotice = "XP grant refused. Check the level cap, amount, and player.";
+  if (amount != 1000 && amount != 5000 && amount != 10000 && amount != 50000) { return; }
+  owner = this.GetPlayerControlledObject();
+  if (owner) {
+    development = PlayerDevelopmentSystem.GetData(owner);
+    if (development) {
+      current = development.GetProficiencyLevel(gamedataProficiencyType.Level);
+      cap = development.GetProficiencyAbsoluteMaxLevel(gamedataProficiencyType.Level);
+      beforeXP = development.GetCurrentLevelProficiencyExp(gamedataProficiencyType.Level);
+      if (current >= 1 && current < cap && beforeXP >= 0 && beforeXP <= 2000000000 - amount) {
+        development.AddExperience(amount, gamedataProficiencyType.Level, telemetryLevelGainReason.IsDebug, false);
+        afterXP = development.GetCurrentLevelProficiencyExp(gamedataProficiencyType.Level);
+        afterLevel = development.GetProficiencyLevel(gamedataProficiencyType.Level);
+        this.nccInventoryNotice = "XP requested. No change detected yet.";
+        if (afterXP != beforeXP || afterLevel != current) {
+          this.nccInventoryNotice = "Progress updated after the XP grant.";
+        }
+      }
+    }
+  }
+}
+
+@addMethod(PauseMenuGameController)
+function NCCLevelHandle(route: CName) -> Bool {
+  if (this.nccInventoryStage > 0) { return false; }
+  if (route == n"NCCLevel1") { this.NCCLevelRequest(1, "Gain 1 level, up to the current cap."); return true; }
+  if (route == n"NCCLevel5") { this.NCCLevelRequest(5, "Gain 5 levels, up to the current cap."); return true; }
+  if (route == n"NCCLevel10") { this.NCCLevelRequest(10, "Gain 10 levels, up to the current cap."); return true; }
+  if (route == n"NCCLevelMax") { this.NCCLevelRequest(0, "Reach the current level cap."); return true; }
+  return false;
+}
+
+@addMethod(PauseMenuGameController)
+function NCCLevelRequest(delta: Int32, caption: String) -> Void {
+  let entries: array<NCCAction>;
+  let entry: NCCAction;
+  if (this.nccInventoryStage != 0 || this.nccBrowserMode != 1 || !this.nccBrowserDetail) { return; }
+  if (delta != 0 && delta != 1 && delta != 5 && delta != 10) { return; }
+  entries = NCCCatalog.Actions();
+  if (this.nccBrowserSelected < 0 || this.nccBrowserSelected >= entries.Size()) { return; }
+  entry = entries[this.nccBrowserSelected];
+  if (entry.command != "level set ") { return; }
+  this.nccLevelQueued = true;
+  this.nccInventoryId = "";
+  this.nccInventoryLabel = entry.label;
+  this.nccInventoryAmount = delta;
+  this.nccInventoryCaption = caption;
+  this.nccInventoryStage = 1;
+  this.NCCBrowserRender();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCLevelMenu(label: String, category: String) -> Void {
+  this.Clear();
+  this.AddMenuItem(label, n"NCCBrowserNone");
+  this.AddMenuItem("Category: " + category, n"NCCBrowserNone");
+  this.AddMenuItem("Gain 1 Level", n"NCCLevel1");
+  this.AddMenuItem("Gain 5 Levels", n"NCCLevel5");
+  this.AddMenuItem("Gain 10 Levels", n"NCCLevel10");
+  this.AddMenuItem("Reach Current Level Cap", n"NCCLevelMax");
+  this.NCCInventoryFinishMenu(2);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCLevelApply(delta: Int32) -> Void {
+  let owner: GameObject;
+  let development: PlayerDevelopmentData;
+  let current: Int32;
+  let cap: Int32;
+  let target: Int32;
+  let observed: Int32;
+  this.nccInventoryNotice = "Level gain refused. Check the cap, amount, and player.";
+  if (delta != 0 && delta != 1 && delta != 5 && delta != 10) { return; }
+  owner = this.GetPlayerControlledObject();
+  if (owner) {
+    development = PlayerDevelopmentSystem.GetData(owner);
+    if (development) {
+      current = development.GetProficiencyLevel(gamedataProficiencyType.Level);
+      cap = development.GetProficiencyAbsoluteMaxLevel(gamedataProficiencyType.Level);
+      if (current >= 1 && current < cap) {
+        target = cap;
+        if (delta > 0 && delta < cap - current) {
+          target = current + delta;
+        }
+        development.SetLevel(gamedataProficiencyType.Level, target, telemetryLevelGainReason.IsDebug, false);
+        observed = development.GetProficiencyLevel(gamedataProficiencyType.Level);
+        this.nccInventoryNotice = "The game has not confirmed the requested level yet.";
+        if (observed == target) {
+          this.nccInventoryNotice = "Requested level reached.";
+        }
+      }
+    }
+  }
+}
+
+@addMethod(PauseMenuGameController)
+function NCCCapHandle(route: CName) -> Bool {
+  if (this.nccInventoryStage > 0) { return false; }
+  if (route == n"NCCCap80") { this.NCCCapRequest(80, "Level cap 80. Unlocks further progression."); return true; }
+  if (route == n"NCCCap100") { this.NCCCapRequest(100, "Level cap 100. Unlocks further progression."); return true; }
+  if (route == n"NCCCapNative") { this.NCCCapRequest(0, "Restore the original cap if your level allows it."); return true; }
+  return false;
+}
+
+@addMethod(PauseMenuGameController)
+function NCCCapRequest(cap: Int32, caption: String) -> Void {
+  let entries: array<NCCAction>;
+  let entry: NCCAction;
+  if (this.nccInventoryStage != 0 || this.nccBrowserMode != 1 || !this.nccBrowserDetail) { return; }
+  if (cap != 0 && cap != 80 && cap != 100) { return; }
+  entries = NCCCatalog.Actions();
+  if (this.nccBrowserSelected < 0 || this.nccBrowserSelected >= entries.Size()) { return; }
+  entry = entries[this.nccBrowserSelected];
+  if (entry.command != "level cap ") { return; }
+  this.nccCapQueued = true;
+  this.nccInventoryId = "";
+  this.nccInventoryLabel = entry.label;
+  this.nccInventoryAmount = cap;
+  this.nccInventoryCaption = caption;
+  this.nccInventoryStage = 1;
+  this.NCCBrowserRender();
+}
+
+@addMethod(PauseMenuGameController)
+function NCCCapMenu(label: String, category: String) -> Void {
+  this.Clear();
+  this.AddMenuItem(label, n"NCCBrowserNone");
+  this.AddMenuItem("Category: " + category, n"NCCBrowserNone");
+  this.AddMenuItem("You can restore the original cap if your level is within it.", n"NCCBrowserNone");
+  this.AddMenuItem("Set Level Cap to 80", n"NCCCap80");
+  this.AddMenuItem("Set Level Cap to 100", n"NCCCap100");
+  this.AddMenuItem("Restore Original Level Cap", n"NCCCapNative");
+  this.NCCInventoryFinishMenu(3);
+}
+
+@addMethod(PauseMenuGameController)
+function NCCCapApply(cap: Int32) -> Void {
+  let owner: GameObject;
+  let development: PlayerDevelopmentData;
+  let quests: QuestsSystem;
+  let current: Int32;
+  let normal: Int32;
+  let target: Int32;
+  this.nccInventoryNotice = "Cap change refused. Invalid value or player unavailable.";
+  if (cap != 0 && cap != 80 && cap != 100) { return; }
+  owner = this.GetPlayerControlledObject();
+  if (owner) {
+    development = PlayerDevelopmentSystem.GetData(owner);
+    quests = GameInstance.GetQuestsSystem(owner.GetGame());
+    if (development && quests && NCCCapSettings.Allowed(owner)) {
+      normal = NCCCapSettings.NativeCap();
+      current = development.GetProficiencyLevel(gamedataProficiencyType.Level);
+      target = cap;
+      if (cap == 0) { target = normal; }
+      this.nccInventoryNotice = "The new cap must cover your current level and the original cap.";
+      if (normal >= 1 && current >= 1 && target >= normal && target >= current) {
+        quests.SetFact(n"ncc_console_level_cap_v2", cap);
+        this.nccInventoryNotice = "The game did not confirm the cap change.";
+        if (quests.GetFact(n"ncc_console_level_cap_v2") == cap) {
+          development.NCCCapRefresh();
+          if (development.GetProficiencyAbsoluteMaxLevel(gamedataProficiencyType.Level) == target) {
+            this.nccInventoryNotice = "Level cap saved. Your current level stays the same.";
+          }
+        }
+      }
+    }
+  }
+}
+
+// NCC_CAP_NATIVE_BEGIN
+@wrapMethod(PlayerDevelopmentData)
+const function GetProficiencyAbsoluteMaxLevel(type: gamedataProficiencyType) -> Int32 {
+  let normal: Int32;
+  let cap: Int32;
+  normal = GetProficiencyAbsoluteMaxLevel(type);
+  if (type == gamedataProficiencyType.Level && normal >= 1) {
+    cap = NCCCapSettings.Configured(this.GetOwner());
+    if (cap > normal) { return cap; }
+  }
+  return normal;
+}
+
+@wrapMethod(PlayerDevelopmentData)
+const function GetProficiencyMaxLevel(type: gamedataProficiencyType) -> Int32 {
+  let normal: Int32;
+  let cap: Int32;
+  normal = GetProficiencyMaxLevel(type);
+  if (type == gamedataProficiencyType.Level && normal >= 1) {
+    cap = NCCCapSettings.Configured(this.GetOwner());
+    if (cap > normal) { return cap; }
+  }
+  return normal;
+}
+
+@wrapMethod(PlayerDevelopmentData)
+const function IsProficiencyMaxLvl(type: gamedataProficiencyType) -> Bool {
+  let cap: Int32;
+  let normal: Int32;
+  if (type == gamedataProficiencyType.Level) {
+    cap = NCCCapSettings.Configured(this.GetOwner());
+    if (cap > 0) {
+      normal = NCCCapSettings.NativeCap();
+      if (normal >= 1 && cap >= normal) {
+        return this.GetProficiencyLevel(type) >= cap;
+      }
+    }
+  }
+  return IsProficiencyMaxLvl(type);
+}
+
+@wrapMethod(PlayerDevelopmentData)
+const function GetExperienceForNextLevel(type: gamedataProficiencyType) -> Int32 {
+  let cap: Int32;
+  let normal: Int32;
+  let current: Int32;
+  if (type == gamedataProficiencyType.Level) {
+    cap = NCCCapSettings.Configured(this.GetOwner());
+    if (cap > 0) {
+      normal = NCCCapSettings.NativeCap();
+      current = this.GetProficiencyLevel(type);
+      if (normal >= 1 && cap > normal && current >= normal) {
+        if (current >= cap) { return -1; }
+        return 50000 + (current - normal) * 2500;
+      }
+    }
+  }
+  return GetExperienceForNextLevel(type);
+}
+
+@wrapMethod(PlayerDevelopmentData)
+const function GetDevPointsForLevel(level: Int32, profType: gamedataProficiencyType, devPtsType: gamedataDevelopmentPointType) -> Int32 {
+  let cap: Int32;
+  let normal: Int32;
+  if (profType == gamedataProficiencyType.Level) {
+    cap = NCCCapSettings.Configured(this.GetOwner());
+    if (cap > 0) {
+      normal = NCCCapSettings.NativeCap();
+      if (normal >= 1 && cap > normal && level > normal && level <= cap) {
+        if (devPtsType == gamedataDevelopmentPointType.Primary) { return 1; }
+        if (devPtsType == gamedataDevelopmentPointType.Attribute && level % 2 == 0) { return 1; }
+        return 0;
+      }
+    }
+  }
+  return GetDevPointsForLevel(level, profType, devPtsType);
+}
+
+@addMethod(PlayerDevelopmentData)
+function NCCCapRefresh() -> Void {
+  this.UpdateProficiencyMaxLevels();
+  this.UpdateUIBB();
+}
